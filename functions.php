@@ -28,7 +28,6 @@ function wcpg_log($text='',$br = true,$instant = true){
     return wcpg_text($t,$br,$instant);
 }
 
-
 function wcpg_profile($key = '',$start = true,$msg = ''){
     global $wcpg_profile_times;
     if($start == true){

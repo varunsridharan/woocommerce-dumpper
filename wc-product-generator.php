@@ -56,6 +56,26 @@ final class WC_Product_Generator_View {
     
     public function create_producs(){
         $this->set_generator();
+        $this->generator->run(array(
+            'product_image' => true, # true / false
+            'product_type' => 'variable', # simple, variable, grouped, external,
+            'extra_metas' => array(), # array("_key1" => 'value','_key2 => 'value'),
+            'excerpt' => true, #true / false
+            'product_cat' =>  true, #true / false
+            'product_tag' =>  true, #true / false
+            'selling_price' =>  true, #true / false
+            'product_attributes' =>  true, #true / false
+            'product_gallery' =>  true, #true / false
+            'product_sku' =>  true, #true / false
+            'stock_status' => 'instock',# instock / outofstock / ''
+            'manage_stock' => 'no', # yes / no / ''
+            'stock' => '', # any number or empty,
+            'product_gallery_count' => 3, # any number
+            'cat_max' => 2, # Total Number of category per product,
+            'tag_max' => 8, # Total Number of tags per product 
+            'attribute_per_product' => 8, # Total Number of attributes per product
+            'attribute_terms_per_product' => 'all', # Total number of terms per attribute per product. or enter all to insert all attributes
+        ));
         wp_die();
     }
     

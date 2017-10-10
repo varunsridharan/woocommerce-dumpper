@@ -1,84 +1,10 @@
 {
-    "Size": [
-        "xsmall",
-        "small",
-        "medium",
-        "normal",
-        "large",
-        "xlarge",
-        "xxlarge",
-        "xxxlarge"
-    ],
-    "Colors": [
-        "red",
-        "blue",
-        "green",
-        "white",
-        "black",
-        "darkbrown",
-        "brown",
-        "skyblue",
-        "peach",
-        "pink",
-        "orange",
-        "mejanto",
-        "ash",
-        "purple",
-        "ink blue",
-        "yellow",
-        "violet"
-    ],
-    "Fabric": [
-        "Cotton",
-        "leather",
-        "fiber",
-        "rubber",
-        "silk"
-    ],
-    "Material": [
-        "silk",
-        "cotton",
-        "semi silk",
-        "poly cotton",
-        "flax",
-        "wool",
-        "ramie",
-        "nylon synthetic",
-        "fiber",
-        "Italian Nylon"
-    ],
-    "Brands": [
-        "adidas",
-        "French Connection",
-        "lee",
-        "reebock classic",
-        "Tommy Hilfiger"
-    ],
-    "Style": [
-        "Trendy ",
-        "Casual ",
-        "Exotic ",
-        "Vibrant Preppy ",
-        "Elegant ",
-        "Bohemian ",
-        "Girly ",
-        "Cow Girl ",
-        "Punk ",
-        "Businesswomen ",
-        "Tomboy "
-    ],
-    "Season": [
-        "winnter",
-        "summer",
-        "autumn",
-        "rainy",
-        "monsoon"
-    ],
-    "Drinks" : [
-        'smoothie',
-        'Cola',
-        'Pepsie',
-        'Fruite',
-        'Fresh Juice',
-    ]
+    "Size": ["xsmall", "small", "medium", "normal", "large", "xlarge", "xxlarge", "xxxlarge"],
+    "Colors": ["red", "blue", "green", "white", "black", "darkbrown", "brown", "skyblue", "peach", "pink", "orange", "mejanto", "ash", "purple", "ink blue", "yellow", "violet"],
+    "Fabric": ["Cotton", "leather", "fiber", "rubber", "silk"],
+    "Material": ["silk", "cotton", "semi silk", "poly cotton", "flax", "wool", "ramie", "nylon synthetic", "fiber", "Italian Nylon"],
+    "Brands": ["adidas", "French Connection", "lee", "reebock classic", "Tommy Hilfiger"],
+    "Style": ["Trendy ", "Casual ", "Exotic ", "Vibrant Preppy ", "Elegant ", "Bohemian ", "Girly ", "Cow Girl ", "Punk ", "Businesswomen ", "Tomboy "],
+    "Season": ["winnter", "summer", "autumn", "rainy", "monsoon"],
+    "Drinks": ["smoothie", "Cola", "Pepsie", "Fruite", "Fresh Juice"]
 }

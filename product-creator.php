@@ -16,10 +16,9 @@ class WC_Product_Generator {
     public function run($options = array()){
         include_once ABSPATH . 'wp-admin/includes/image.php';
         $this->used_image = array();
-        $product_types = array('simple', 'variable');
-        $pty = $this->rand(1,$product_types) - 1;
-
+        wcpg_profile("product_creation_started");
         $this->create_base_product($options);
+        wcpg_profile("product_creation_started",false,"Product Created In ");
     }
     
     public function attribute_exist($name) {
@@ -316,7 +315,7 @@ class WC_Product_Generator {
                 
                 $product_id = $this->add_post(array(
                     'post_type' => 'product_variation',
-                    'post_title' => md5($var_op),
+                    'post_title' => $var_op,
                     'post_status' => 'publish',
                     'post_author' => $this->get_user_id(),
                     'post_parent' => $parent_id,
