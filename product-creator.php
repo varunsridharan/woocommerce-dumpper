@@ -8,63 +8,18 @@ class WC_Product_Generator {
         $this->categories = $data['categories'];
         $this->titles = $data['titles'];
         $this->attributes = $data['attributes'];
-        $this->total_images = isset($data['total_images']) ? $data['total_images'] : 10;
+        $this->total_images = isset($data['total_images']) ? $data['total_images'] : 2000;
         $this->image_dir = isset($data['image_dir']) ? $data['image_dir'] : __DIR__.'/images/';
         $this->attrs = empty($data['attributes']) ? array() : array_keys($data['attributes']);
     }
     
-    public function run(){
+    public function run($options = array()){
         include_once ABSPATH . 'wp-admin/includes/image.php';
         $this->used_image = array();
         $product_types = array('simple', 'variable');
         $pty = $this->rand(1,$product_types) - 1;
-        
-        /*$this->create_base_product(array(
-            'product_image' => true,
-            'product_type' => 'variable',#$product_types[$pty],
-            'extra_metas' => array(),
-            'excerpt' => ($this->rand(0,1) === 1) ? true : false,
-            'product_cat' => ($this->rand(0,1) === 1) ? true : false,
-            'product_tag' => ($this->rand(0,1) === 1) ? true : false,
-            'selling_price' => ($this->rand(0,1) === 1) ? true : false,
-            'product_attributes' =>true, #($this->rand(0,1) === 1) ? true : false,
-            'product_gallery' => ($this->rand(0,1) === 1) ? true : false,
-            'product_sku' => ($this->rand(0,1) === 1) ? true : false,
 
-            'stock_status' => 'instock',#($this->rand(0,1) === 1) ? 'instock' : 'outofstock',
-            'manage_stock' => 'no',#($this->rand(0,1) === 1) ? 'yes' : 'no',
-            'stock' => ($this->rand(0,1) === 1) ? $this->rand(1,100) : '',
-            
-            'product_gallery_count' =>$this->rand(0,10),
-            'cat_max' => $this->rand(0,3),
-            'tag_max' => $this->rand(0,8),
-            'attribute_per_product' => $this->rand(1,1),
-            'attribute_terms_per_product' => $this->rand(1,2),
-        ));*/
-        
-        
-        $this->create_base_product(array(
-            'product_image' => true,
-            'product_type' => 'variable',#$product_types[$pty],
-            'extra_metas' => array(),
-            'excerpt' => true,
-            'product_cat' => true,
-            'product_tag' => true,
-            'selling_price' => true,
-            'product_attributes' =>true, #($this->rand(0,1) === 1) ? true : false,
-            'product_gallery' => true,
-            'product_sku' => true,
-
-            'stock_status' => '',#($this->rand(0,1) === 1) ? 'instock' : 'outofstock',
-            'manage_stock' => 'no',#($this->rand(0,1) === 1) ? 'yes' : 'no',
-            'stock' => '',
-            
-            'product_gallery_count' => 5,
-            'cat_max' => 2,
-            'tag_max' => 8,
-            'attribute_per_product' => 7,
-            'attribute_terms_per_product' => 'all',
-        ));
+        $this->create_base_product($options);
     }
     
     public function attribute_exist($name) {

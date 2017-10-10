@@ -44,22 +44,18 @@ final class WC_Product_Generator_View {
         wp_die();
     }
     
-    public function create_producs(){
+    public function set_generator($with_output =true){
         $this->init_class();
-
-        if (ob_get_level() == 0) ob_start();
-        wcpg_profile("class_start");
         
         $this->generator = new WC_Product_Generator(array( 
             'categories' => $this->categories,
             'titles' => $this->titles, 
             'attributes' => $this->attributes
         ));
-        
-        $this->generator->run();        
-
-        wcpg_profile("class_end",false,"Product Created In ");
-        ob_end_flush();
+    }
+    
+    public function create_producs(){
+        $this->set_generator();
         wp_die();
     }
     
@@ -81,5 +77,5 @@ final class WC_Product_Generator_View {
 add_action("init",'init_wcgen_class');
 
 function init_wcgen_class(){ 
-    new WC_Product_Generator_View; 
+    return WC_Product_Generator_View::instance();
 }
