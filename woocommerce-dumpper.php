@@ -33,13 +33,13 @@ final class WooCommerce_Dumpper_Lib {
 	}
     
     public function __construct() {
+        $this->content = new LoremIpsum;
         add_action("wp_ajax_wc-pgl-defaults",array($this,'setup_defaults'));
         add_action("wp_ajax_wc-pgl-import", array($this,'create_producs'));
         add_action("wp_ajax_wc-pgl-variations-import", array($this,'create_variation_products'));
     }
     
-    public function setup_defaults(){ 
-        $this->content = new LoremIpsum;
+    public function setup_defaults(){
         new WC_Product_Generator_Defaults(array(
             'category_description' => true,
             'force_all_category_images' => true,
@@ -52,14 +52,13 @@ final class WooCommerce_Dumpper_Lib {
     }
     
     public function create_producs(){
-        $this->content = new LoremIpsum;
-        $generator = new WC_DUMPPER_Importer;
+        $generator = new WC_DUMPPER_Importer();
+        
         $generator->add_product();
         wp_die();
     }
     
-    public function create_variation_products(){
-        $this->content = new LoremIpsum;
+    public function create_variation_products(){        
         $generator = new WC_DUMPPER_Variation_Importer($_GET['product-id']);
         $generator->run();
         wp_die();

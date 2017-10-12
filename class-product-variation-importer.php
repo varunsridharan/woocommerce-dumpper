@@ -134,7 +134,10 @@ class WC_DUMPPER_Variation_Importer extends WC_DUMPPER_Importer {
                         $this->set_product_metas('_thumbnail_id',$image_id);
                     }
                     
+                    $this->set_product_metas($this->meta("product_extra_meta"));
+                    
                     $this->update_post_metas($product_id);
+                    do_action("woocommerce_product_dumpper_product_variation_created",$product_id,$this);
                     $added_variations[] = $is_created;
                 }
                 

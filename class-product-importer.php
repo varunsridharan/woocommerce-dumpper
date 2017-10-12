@@ -277,7 +277,16 @@ class WC_DUMPPER_Importer extends WC_Product_Generator {
         $this->disable_hooks();
     }
     
+    public function setup_options($options){
+        if(!empty($options)){
+            $exists = $this->options;
+            $new = wp_parse_args($options,$exists);
+            $this->options = $new;
+        }
+    }
+    
     public function add_product($options = array()){
+        $this->setup_options($options);
         $this->setup_importing();
         $this->profile('process_took');
         
@@ -366,6 +375,7 @@ class WC_DUMPPER_Importer extends WC_Product_Generator {
             
             $this->update_post_metas($product_id);
             
+            do_action("woocommerce_product_dumpper_product_created",$product_id,$this);
             $this->hold_db_query("no");
             
             if($this->op("product_type") == 'variable'){
