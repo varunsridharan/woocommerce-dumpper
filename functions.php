@@ -1,41 +1,35 @@
 <?php
-global $wcpgv,$wcpg_profile_times;
-$wcpgv = array();
-$wcpg_profile_times = array();
+global $wcpgl_logs,$wcpgl_profile;
+$wcpgl_logs = array();
+$wcpgl_profile = array();
 
-function wcpg_text($text,$br = true,$instant = true){
-	global $wcpgv;
-	$message = '';
-	if($br){ 
-        $message = $text.'<br/>'; 
-    } else {
-        $message = $text;
+function wcpgl_output($text = '',$br = true,$instant = true){
+    $wcpgl_logs[] = $text;
+    if($br){
+        $text = $text .'<br/>';
     }
     
-    $wcpgv[] = $message;
-    
-	if($instant){ 
-        echo $message; 
-        echo str_pad('',4096)."\n";   
-        ob_flush(); 
-        flush(); 
-    }	
+    if($instant){
+        echo $text;
+        echo str_pad('',4096)."\n";
+        ob_flush(); flush();
+    }
 }
 
-function wcpg_log($text='',$br = true,$instant = true){
+function wcpgl_log($text='',$br = true,$instant = true){
     $t = '';
     if(!empty($text)){$t = current_time('d/m/Y - h:i:s a').' : '.$text;}
-    return wcpg_text($t,$br,$instant);
+    return wcpgl_output($t,$br,$instant);
 }
 
-function wcpg_profile($key = '',$start = true,$msg = ''){
-    global $wcpg_profile_times;
+function wcpgl_profile($key = '',$start = true,$msg = ''){
+    global $wcpgl_profile;
     if($start == true){
-        $wcpg_profile_times[$key] = microtime(true);
+        $wcpgl_profile[$key] = microtime(true);
     } else {
         $m = empty($msg) ? $key : $msg;
-        $time = intval(microtime(true) - $wcpg_profile_times[$key]).'Seconds';
+        $time = intval(microtime(true) - $wcpgl_profile[$key]).' Seconds';
         $time = $m.' '.$time;
-        wcpg_log($time); 
+        wcpgl_log($time); 
     }
 }
