@@ -66,7 +66,7 @@ class WC_Product_Generator {
     
     public function log($msg){
         $msg = (is_string($msg) === false) ? json_encode($msg) : $msg;
-        wcpgl_log($msg);
+        $log = wcpgl_log($msg);
     }
     
     public function _profile($key = ''){

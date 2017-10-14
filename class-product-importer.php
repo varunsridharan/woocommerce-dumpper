@@ -304,7 +304,7 @@ class WC_DUMPPER_Importer extends WC_Product_Generator {
         if($product_id !== false ){
             $this->log("Base Product Created | Product ID : ".$product_id);
             
-            $this->log("Setting Up Product Type as".$this->op("product_type"));
+            $this->log("Setting Up Product Type as ".$this->op("product_type"));
             $this->set_product_categories(array($this->op("product_type")),$product_id,'product_type');
             
             $this->log("Setting Up Product Metas");
@@ -379,11 +379,11 @@ class WC_DUMPPER_Importer extends WC_Product_Generator {
             $this->hold_db_query("no");
             
             if($this->op("product_type") == 'variable'){
-                $this->log("<hr>");
+                $this->log(" ");
                 $this->log("Converting Product As Variable & Creating Variations");
                 $variation_handler = new WC_DUMPPER_Variation_Importer($product_id,$this->options);
                 $variation_handler->run();
-                $this->log("<hr>");
+                $this->log(" ");
             }
         }
         

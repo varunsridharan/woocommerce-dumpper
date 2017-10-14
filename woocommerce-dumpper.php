@@ -14,6 +14,7 @@ define('WC_DUMPPER_FILE',plugin_basename( __FILE__ ));
 define('WC_DUMPPER_PATH',plugin_dir_path( __FILE__ )); # Plugin DIR
 
 require_once(WC_DUMPPER_PATH.'functions.php');
+require_once(WC_DUMPPER_PATH.'class-logger.php');
 require_once(WC_DUMPPER_PATH.'content-generator.php');
 require_once(WC_DUMPPER_PATH.'abstract-generator.php');
 require_once(WC_DUMPPER_PATH.'class-product-importer.php');
@@ -34,12 +35,15 @@ final class WooCommerce_Dumpper_Lib {
     
     public function __construct() {
         $this->content = new LoremIpsum;
-        add_action("wp_ajax_wc-pgl-defaults",array($this,'setup_defaults'));
-        add_action("wp_ajax_wc-pgl-import", array($this,'create_producs'));
-        add_action("wp_ajax_wc-pgl-variations-import", array($this,'create_variation_products'));
+        add_action("wp_ajax_wc-dumpper-defaults",array($this,'setup_defaults'));
+        add_action("wp_ajax_wc-dumpper-import", array($this,'create_producs'));
+        add_action("wp_ajax_wc-dumpper-variations-import", array($this,'create_variation_products'));
     }
     
+    private function setup_log_file(){}
+    
     public function setup_defaults(){
+        $this->setup_log_file();
         new WC_Product_Generator_Defaults(array(
             'category_description' => true,
             'force_all_category_images' => true,
@@ -52,13 +56,17 @@ final class WooCommerce_Dumpper_Lib {
     }
     
     public function create_producs(){
+        $this->setup_log_file();
         $generator = new WC_DUMPPER_Importer();
-        
         $generator->add_product();
         wp_die();
     }
     
-    public function create_variation_products(){        
+    public function create_variation_products(){
+        if(!isset($_GET['product-id'])){
+            die("Please Provide A Valid Product ID | example.com?product-id=100");
+        }
+        $this->setup_log_file();
         $generator = new WC_DUMPPER_Variation_Importer($_GET['product-id']);
         $generator->run();
         wp_die();

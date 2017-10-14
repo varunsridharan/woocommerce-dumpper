@@ -61,6 +61,8 @@ class WC_DUMPPER_Variation_Importer extends WC_DUMPPER_Importer {
     public function get_possible_options(&$attributes){
         $possible_attributes = get_post_meta($this->parent_id,'__possible_attrs',true);
         if(empty($possible_attributes)){
+            $this->log("");
+            $this->log($attributes);
             $possible_attributes = wc_array_cartesian( $attributes );
             update_post_meta($this->parent_id,'__total_possible_vars',count($possible_attributes));
             //update_post_meta($this->parent_id,'__possible_attrs',$possible_attributes);
@@ -77,6 +79,7 @@ class WC_DUMPPER_Variation_Importer extends WC_DUMPPER_Importer {
 		$attributes = wc_list_pluck( array_filter( $product->get_attributes(), 'wc_attributes_array_filter_variation' ), 'get_slugs' );
         
         if(!empty($attributes)){
+            
             $this->log("Generating A List Possible Variations");
             $possible_attributes = $this->get_possible_options($attributes);
             $this->log("Total Possible Variations : ".count($possible_attributes));
